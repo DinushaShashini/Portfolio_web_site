@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D W D Shashini Dharmadasa | Full Stack Software Developer</title>
+  <meta name="description" content="Portfolio of D W D Shashini Dharmadasa – Full Stack Software Developer specializing in MERN Stack, Java, and Android development." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Devicons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ========================
+       NAVBAR
+  ========================= -->
+  <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo" aria-label="Home">
+        <span class="logo-bracket">&lt;</span>Shashini<span class="logo-bracket">/&gt;</span>
+      </a>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu" role="menubar">
+        <li role="none"><a href="#about"         class="nav-link" role="menuitem">About</a></li>
+        <li role="none"><a href="#skills"        class="nav-link" role="menuitem">Skills</a></li>
+        <li role="none"><a href="#projects"      class="nav-link" role="menuitem">Projects</a></li>
+        <li role="none"><a href="#education"     class="nav-link" role="menuitem">Education</a></li>
+        <li role="none"><a href="#certifications" class="nav-link" role="menuitem">Certifications</a></li>
+        <li role="none"><a href="#contact"       class="nav-link" role="menuitem">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ========================
+       HERO SECTION
+  ========================= -->
+  <section class="hero" id="hero" aria-label="Hero section">
+    <div class="hero-bg" style="background-image: url('assets/hero-bg.png');" aria-hidden="true">
+      <div class="hero-overlay" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="hero-photo-wrapper">
+        <div class="hero-photo-ring" aria-hidden="true"></div>
+        <img src="assets/profile.jpg" alt="D W D Shashini Dharmadasa – Full Stack Software Developer" class="hero-photo" />
+      </div>
+
+      <div class="hero-text">
+        <p class="hero-greeting">Hi there, I'm</p>
+        <h1 class="hero-name">D W D Shashini<br /><span class="hero-name-accent">Dharmadasa</span></h1>
+        <div class="hero-title-wrapper" aria-live="polite">
+          <span class="hero-title-static">I'm a </span>
+          <span class="hero-typewriter" id="typewriter" aria-label="Full Stack Developer"></span>
+          <span class="hero-cursor" aria-hidden="true">|</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects <i class="fas fa-arrow-down" aria-hidden="true"></i></a>
+          <a href="assets/CV_Shashini_Dharmadasa.pdf" class="btn btn-outline" download aria-label="Download CV">
+            <i class="fas fa-download" aria-hidden="true"></i> Download CV
+          </a>
+        </div>
+
+        <div class="hero-socials">
+          <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/dwdsdharmadasa" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile">
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:dharmadasadinusha@gmail.com" class="social-icon" aria-label="Send Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <a href="#about" class="hero-scroll-down" aria-label="Scroll to About section">
+      <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </a>
+  </section>
+
+  <!-- ========================
+       ABOUT SECTION
+  ========================= -->
+  <section class="section" id="about" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Get To Know Me</span>
+        <h2 class="section-title" id="about-heading">About Me</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-photo-col fade-in">
+          <div class="about-photo-wrapper">
+            <img src="assets/profile.jpg" alt="Shashini Dharmadasa professional photo" class="about-photo" />
+            <div class="about-photo-deco" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="about-content-col fade-in">
+          <h3 class="about-subtitle">Full Stack Software Developer</h3>
+          <p class="about-text">
+            Results-driven Full Stack Software Developer with hands-on experience in MERN Stack (MongoDB, Express.js, React.js, Node.js), Java, and Android development using Kotlin and Android Studio. Skilled in designing and developing scalable web and mobile applications, building RESTful APIs, and delivering responsive UI/UX solutions.
+          </p>
+          <p class="about-text">
+            Strong knowledge of database systems (MySQL, MongoDB), authentication mechanisms (Firebase Authentication, JWT), CRUD operations, and real-time data synchronization. Experienced in API integration, Git/GitHub version control, Agile development methodologies, and software development lifecycle practices.
+          </p>
+          <p class="about-text">
+            Passionate about creating efficient, secure, and user-focused software solutions that solve real-world problems and enhance user experience.
+          </p>
+
+          <div class="about-details">
+            <div class="about-detail-item">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <a href="mailto:dharmadasadinusha@gmail.com">dharmadasadinusha@gmail.com</a>
+            </div>
+            <div class="about-detail-item">
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              <a href="tel:+94771171519">+94 77 117 1519</a>
+            </div>
+            <div class="about-detail-item">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <span>Sri Lanka</span>
+            </div>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat-card">
+              <span class="stat-number" data-target="4">0</span>
+              <span class="stat-label">Projects</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="4">0</span><span class="stat-suffix">+</span>
+              <span class="stat-label">Tech Stacks</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="1">0</span>
+              <span class="stat-label">Certification</span>
+            </div>
+            <div class="stat-card">
+              <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+              <span class="stat-label">Passion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       SKILLS SECTION
+  ========================= -->
+  <section class="section section-dark" id="skills" aria-labelledby="skills-heading">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">What I Know</span>
+        <h2 class="section-title" id="skills-heading">Technical Skills</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- Programming Languages -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-code" aria-hidden="true"></i> Programming Languages
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="devicon-java-plain colored" aria-hidden="true"></i> Java</span>
+            <span class="skill-tag"><i class="devicon-javascript-plain colored" aria-hidden="true"></i> JavaScript</span>
+            <span class="skill-tag"><i class="devicon-kotlin-plain colored" aria-hidden="true"></i> Kotlin</span>
+            <span class="skill-tag"><i class="devicon-python-plain colored" aria-hidden="true"></i> Python</span>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-palette" aria-hidden="true"></i> Frontend Development
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="devicon-react-original colored" aria-hidden="true"></i> React.js</span>
+            <span class="skill-tag"><i class="devicon-html5-plain colored" aria-hidden="true"></i> HTML5</span>
+            <span class="skill-tag"><i class="devicon-css3-plain colored" aria-hidden="true"></i> CSS3</span>
+            <span class="skill-tag"><i class="devicon-tailwindcss-plain colored" aria-hidden="true"></i> Tailwind CSS</span>
+            <span class="skill-tag"><i class="devicon-bootstrap-plain colored" aria-hidden="true"></i> Bootstrap</span>
+          </div>
+        </div>
+
+        <!-- Backend -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-server" aria-hidden="true"></i> Backend Development
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="devicon-nodejs-plain colored" aria-hidden="true"></i> Node.js</span>
+            <span class="skill-tag"><i class="devicon-express-original" aria-hidden="true"></i> Express.js</span>
+            <span class="skill-tag"><i class="devicon-spring-plain colored" aria-hidden="true"></i> Spring Boot</span>
+            <span class="skill-tag">🔗 RESTful APIs</span>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-mobile-alt" aria-hidden="true"></i> Mobile Development
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="devicon-android-plain colored" aria-hidden="true"></i> Android Studio</span>
+            <span class="skill-tag"><i class="devicon-kotlin-plain colored" aria-hidden="true"></i> Kotlin</span>
+            <span class="skill-tag">🎨 XML UI Design</span>
+            <span class="skill-tag">🔥 Firebase Integration</span>
+          </div>
+        </div>
+
+        <!-- Databases -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-database" aria-hidden="true"></i> Databases
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="devicon-mysql-plain colored" aria-hidden="true"></i> MySQL</span>
+            <span class="skill-tag"><i class="devicon-mongodb-plain colored" aria-hidden="true"></i> MongoDB</span>
+            <span class="skill-tag">🔥 Firebase Realtime DB</span>
+          </div>
+        </div>
+
+        <!-- Auth & Security -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i> Authentication & Security
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag">🔥 Firebase Authentication</span>
+            <span class="skill-tag">🔐 JWT Authentication</span>
+            <span class="skill-tag">🛡️ RBAC</span>
+          </div>
+        </div>
+
+        <!-- API & Integration -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-plug" aria-hidden="true"></i> API & Integration
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag">🔗 REST API Development</span>
+            <span class="skill-tag">🔌 API Integration</span>
+            <span class="skill-tag">📬 Postman</span>
+          </div>
+        </div>
+
+        <!-- Tools & Platforms -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-tools" aria-hidden="true"></i> Tools & Platforms
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag"><i class="devicon-git-plain colored" aria-hidden="true"></i> Git</span>
+            <span class="skill-tag"><i class="devicon-github-original" aria-hidden="true"></i> GitHub</span>
+            <span class="skill-tag"><i class="devicon-vscode-plain colored" aria-hidden="true"></i> VS Code</span>
+            <span class="skill-tag"><i class="devicon-intellij-plain colored" aria-hidden="true"></i> IntelliJ IDEA</span>
+            <span class="skill-tag">🌘 Eclipse</span>
+          </div>
+        </div>
+
+        <!-- Professional Skills -->
+        <div class="skill-category fade-in">
+          <h3 class="skill-category-title">
+            <i class="fas fa-user-tie" aria-hidden="true"></i> Professional Skills
+          </h3>
+          <div class="skill-tags">
+            <span class="skill-tag">🧩 Problem Solving</span>
+            <span class="skill-tag">🤝 Team Collaboration</span>
+            <span class="skill-tag">💬 Communication</span>
+            <span class="skill-tag">⏰ Time Management</span>
+            <span class="skill-tag">⚡ Quick Learning</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       PROJECTS SECTION
+  ========================= -->
+  <section class="section" id="projects" aria-labelledby="projects-heading">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">What I've Built</span>
+        <h2 class="section-title" id="projects-heading">Projects</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1: SMART ALERT -->
+        <article class="project-card fade-in" aria-label="SMART ALERT project">
+          <div class="project-card-header">
+            <div class="project-icon" aria-hidden="true"><i class="fas fa-bus"></i></div>
+            <div class="project-badges">
+              <span class="badge badge-group">Group Project</span>
+              <span class="badge badge-date">Aug – Oct 2025</span>
+            </div>
+          </div>
+          <h3 class="project-title">SMART ALERT</h3>
+          <p class="project-subtitle">Student Management System</p>
+          <p class="project-description">
+            A full-stack student management platform for attendance, transportation, examinations, and notifications.
+          </p>
+          <div class="project-contribution">
+            <h4 class="contribution-title">My Contribution – Shuttle &amp; Route Management Module</h4>
+            <ul class="contribution-list">
+              <li>Developed a MERN Stack-based Shuttle &amp; Route Management System with real-time bus tracking, route optimization, and transportation monitoring features.</li>
+              <li>Integrated REST APIs, backend services, and live update mechanisms to improve communication between administrators, drivers, students, and parents.</li>
+              <li>Built responsive, user-friendly interfaces using modern UI/UX principles to enhance accessibility and user experience.</li>
+              <li>Collaborated in an Agile development environment using Git and GitHub for version control and team collaboration.</li>
+            </ul>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">Express.js</span>
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Firebase</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View SMART ALERT on GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Smart Campus Hub -->
+        <article class="project-card fade-in" aria-label="Smart Campus Hub project">
+          <div class="project-card-header">
+            <div class="project-icon" aria-hidden="true"><i class="fas fa-university"></i></div>
+            <div class="project-badges">
+              <span class="badge badge-group">Group Project</span>
+            </div>
+          </div>
+          <h3 class="project-title">Smart Campus Hub</h3>
+          <p class="project-subtitle">Facilities &amp; Resource Management System</p>
+          <p class="project-description">
+            A full-stack campus facilities management platform designed to streamline maintenance operations and incident resolution workflows.
+          </p>
+          <div class="project-contribution">
+            <h4 class="contribution-title">My Contribution – Incident Management Module</h4>
+            <ul class="contribution-list">
+              <li>Developed a full-stack Incident Management System using React.js, Spring Boot, MongoDB, REST APIs, and JWT Authentication.</li>
+              <li>Implemented incident ticket management, file uploads, technician assignment, status tracking, and automated notification workflows.</li>
+              <li>Designed secure backend services with Role-Based Access Control (RBAC), authentication, validation, and database operations.</li>
+              <li>Improved operational efficiency by enabling end-to-end incident reporting, tracking, and resolution management.</li>
+            </ul>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">JWT</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View Smart Campus Hub on GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: UniHostel -->
+        <article class="project-card fade-in" aria-label="UniHostel project">
+          <div class="project-card-header">
+            <div class="project-icon" aria-hidden="true"><i class="fas fa-building"></i></div>
+            <div class="project-badges">
+              <span class="badge badge-group">Group Project</span>
+            </div>
+          </div>
+          <h3 class="project-title">UniHostel</h3>
+          <p class="project-subtitle">Hostel Management System</p>
+          <p class="project-description">
+            A full-stack hostel management platform to automate hostel operations, maintenance services, and student inquiries.
+          </p>
+          <div class="project-contribution">
+            <h4 class="contribution-title">My Contribution – Maintenance &amp; Inquiry Management Module</h4>
+            <ul class="contribution-list">
+              <li>Developed a MERN Stack-based Maintenance &amp; Inquiry Management System for submitting, tracking, and managing maintenance requests and student inquiries.</li>
+              <li>Implemented CRUD operations, form validation, request status tracking, and centralized data management using MongoDB.</li>
+              <li>Built responsive React.js interfaces and integrated RESTful APIs for seamless frontend-backend communication.</li>
+              <li>Enhanced service management workflows through real-time status updates, Agile collaboration, and Git/GitHub version control.</li>
+            </ul>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">Express.js</span>
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Node.js</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View UniHostel on GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4: WellnessMate -->
+        <article class="project-card fade-in" aria-label="WellnessMate project">
+          <div class="project-card-header">
+            <div class="project-icon" aria-hidden="true"><i class="fas fa-heartbeat"></i></div>
+            <div class="project-badges">
+              <span class="badge badge-individual">Individual Project</span>
+            </div>
+          </div>
+          <h3 class="project-title">WellnessMate</h3>
+          <p class="project-subtitle">Personal Wellness App (Mobile)</p>
+          <p class="project-description">
+            A personal wellness application for habit tracking, mood journaling, and hydration reminders with real-time data synchronization.
+          </p>
+          <div class="project-contribution">
+            <h4 class="contribution-title">Key Features</h4>
+            <ul class="contribution-list">
+              <li>Kotlin-based Android app with Firebase integration for secure authentication.</li>
+              <li>Habit tracking (add/edit/delete), mood journaling with emojis and notes.</li>
+              <li>Hydration reminders via push notifications for daily wellness monitoring.</li>
+              <li>Interactive charts (data visualization) to track mood trends and support user wellness goals.</li>
+            </ul>
+          </div>
+          <div class="project-tech">
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">Android Studio</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">XML UI</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline" aria-label="View WellnessMate on GitHub">
+              <i class="fab fa-github" aria-hidden="true"></i> GitHub
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       EDUCATION & COURSES
+  ========================= -->
+  <section class="section section-dark" id="education" aria-labelledby="education-heading">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">My Academic Journey</span>
+        <h2 class="section-title" id="education-heading">Education &amp; Courses</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <!-- Education Timeline -->
+      <div class="education-wrapper">
+        <h3 class="sub-section-title fade-in"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Academic Education</h3>
+        <div class="timeline">
+          <div class="timeline-item fade-in">
+            <div class="timeline-dot" aria-hidden="true"></div>
+            <div class="timeline-content">
+              <div class="timeline-date">
+                <i class="fas fa-calendar-alt" aria-hidden="true"></i> Oct 2023 – Present
+              </div>
+              <h4 class="timeline-title">BSc (Hons) in Information Technology</h4>
+              <p class="timeline-subtitle">Specializing in Information Technology</p>
+              <p class="timeline-institution">
+                <i class="fas fa-university" aria-hidden="true"></i>
+                Sri Lanka Institute of Information Technology (SLIIT), Malabe
+              </p>
+              <div class="timeline-tags">
+                <span class="tech-tag">Information Technology</span>
+                <span class="tech-tag">Software Engineering</span>
+                <span class="tech-tag">Currently Pursuing</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Relevant Courses -->
+      <div class="courses-wrapper">
+        <h3 class="sub-section-title fade-in"><i class="fas fa-book-open" aria-hidden="true"></i> Relevant Courses</h3>
+        <div class="courses-grid">
+          <div class="course-card fade-in">
+            <div class="course-icon" aria-hidden="true"><i class="fas fa-cubes"></i></div>
+            <h4 class="course-title">Object Oriented Programming</h4>
+          </div>
+          <div class="course-card fade-in">
+            <div class="course-icon" aria-hidden="true"><i class="fas fa-sitemap"></i></div>
+            <h4 class="course-title">Data Structures &amp; Algorithms</h4>
+          </div>
+          <div class="course-card fade-in">
+            <div class="course-icon" aria-hidden="true"><i class="fas fa-mobile-alt"></i></div>
+            <h4 class="course-title">Mobile Application Development</h4>
+          </div>
+          <div class="course-card fade-in">
+            <div class="course-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+            <h4 class="course-title">Database Management Systems</h4>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================
+       CERTIFICATIONS SECTION
+  ========================= -->
+  <section class="section" id="certifications" aria-labelledby="certifications-heading">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Achievements</span>
+        <h2 class="section-title" id="certifications-heading">Certifications</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="cert-grid">
+        <div class="cert-card fade-in">
+          <div class="cert-icon" aria-hidden="true">
+            <i class="devicon-python-plain colored"></i>
+          </div>
+          <div class="cert-content">
+            <h3 class="cert-title">Python For Beginner</h3>
+            <p class="cert-issuer">
+              <i class="fas fa-award" aria-hidden="true"></i> University of Moratuwa
+            </p>
+            <div class="cert-badge">
+              <i class="fas fa-certificate" aria-hidden="true"></i> Certified
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interests -->
+      <div class="interests-wrapper">
+        <h3 class="sub-section-title fade-in"><i class="fas fa-heart" aria-hidden="true"></i> Interests</h3>
+        <div class="interests-tags fade-in">
+          <span class="interest-tag">⚡ Full-Stack Development</span>
+          <span class="interest-tag">📱 Mobile App Development</span>
+          <span class="interest-tag">🎨 UI/UX Design</span>
+          <span class="interest-tag">🌐 Web Technologies</span>
+          <span class="interest-tag">🔓 Open-Source Technologies</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================
+       CONTACT SECTION
+  ========================= -->
+  <section class="section section-dark" id="contact" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">Get In Touch</span>
+        <h2 class="section-title" id="contact-heading">Contact Me</h2>
+        <div class="section-line" aria-hidden="true"></div>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info fade-in">
+          <h3 class="contact-info-title">Let's work together!</h3>
+          <p class="contact-info-text">
+            I'm currently looking for new opportunities. Whether you have a project, a question, or just want to say hello — my inbox is always open.
+          </p>
+          <div class="contact-details">
+            <a href="mailto:dharmadasadinusha@gmail.com" class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
+              <span>dharmadasadinusha@gmail.com</span>
+            </a>
+            <a href="tel:+94771171519" class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
+              <span>+94 77 117 1519</span>
+            </a>
+            <a href="https://www.linkedin.com/in/dwdsdharmadasa" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true"><i class="fab fa-linkedin-in"></i></div>
+              <span>linkedin.com/in/dwdsdharmadasa</span>
+            </a>
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener noreferrer" class="contact-detail-item">
+              <div class="contact-detail-icon" aria-hidden="true"><i class="fab fa-github"></i></div>
+              <span>github.com/DinushaShashini</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="contact-form-wrapper fade-in">
+          <form class="contact-form" id="contact-form" novalidate aria-label="Contact form">
+            <div class="form-group">
+              <label for="name" class="form-label">Your Name <span aria-hidden="true">*</span></label>
+              <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required autocomplete="name" />
+              <span class="form-error" id="name-error" role="alert" aria-live="polite"></span>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Your Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required autocomplete="email" />
+              <span class="form-error" id="email-error" role="alert" aria-live="polite"></span>
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Your Message <span aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="Hi Shashini, I'd love to connect..." required></textarea>
+              <span class="form-error" id="message-error" role="alert" aria-live="polite"></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message
+            </button>
+            <div class="form-success" id="form-success" role="status" aria-live="polite" style="display:none;">
+              <i class="fas fa-check-circle" aria-hidden="true"></i> Thank you! Your message has been received.
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================
+       FOOTER
+  ========================= -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <span class="logo-bracket">&lt;</span>Shashini<span class="logo-bracket">/&gt;</span>
+        </div>
+        <p class="footer-tagline">Full Stack Software Developer</p>
+        <div class="footer-socials">
+          <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub Profile">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/dwdsdharmadasa" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn Profile">
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+          </a>
+          <a href="mailto:dharmadasadinusha@gmail.com" class="social-icon" aria-label="Send Email">
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+          </a>
+        </div>
+        <p class="footer-copy">
+          &copy; <span id="year"></span> D W D Shashini Dharmadasa. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <i class="fas fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Main Script -->
+  <script src="script.js"></script>
+</body>
+</html>
