@@ -1,5 +1,5 @@
 /* ============================================================
-   PREMIUM PORTFOLIO 2026 — script.js
+   
    Dinusha S. Dharmadasa | Full Stack Developer
    ============================================================ */
 
@@ -40,83 +40,37 @@ function initLoader() {
 
 /* ── 2. CUSTOM CURSOR ─────────────────────────────────────── */
 function initCursor() {
-  const dot  = document.getElementById('cursor-dot');
-  const ring = document.getElementById('cursor-ring');
-  if (!dot || !ring) return;
+  const dot = document.getElementById('cursor-dot');
+  if (!dot) return;
 
-  // Only show custom cursor on non-touch devices
+  // Hide on touch devices
   if (window.matchMedia('(pointer: coarse)').matches) {
-    dot.style.display  = 'none';
-    ring.style.display = 'none';
+    dot.style.display = 'none';
     document.body.style.cursor = 'auto';
     return;
   }
 
-  let mouseX = 0, mouseY = 0;
-  let ringX  = 0, ringY  = 0;
-  let raf;
-
   document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top  = mouseY + 'px';
+    dot.style.left = e.clientX + 'px';
+    dot.style.top  = e.clientY + 'px';
   });
 
-  // Ring follows with lerp for smooth lag
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function loop() {
-    ringX = lerp(ringX, mouseX, 0.12);
-    ringY = lerp(ringY, mouseY, 0.12);
-    ring.style.left = ringX + 'px';
-    ring.style.top  = ringY + 'px';
-    raf = requestAnimationFrame(loop);
-  }
-  loop();
-
-  // Scale on interactive elements
-  const interactables = 'a, button, input, textarea, [role="button"]';
+  // Hover — expand to rounded square
+  const interactables = 'a, button, input, textarea, select, [role="button"]';
   document.addEventListener('mouseover', (e) => {
-    if (e.target.closest(interactables)) {
-      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-      ring.style.width       = '52px';
-      ring.style.height      = '52px';
-      ring.style.borderColor = isDark ? 'rgba(167,139,250,1)' : 'rgba(99,102,241,1)';
-      dot.style.transform    = 'translate(-50%,-50%) scale(1.8)';
-    }
+    if (e.target.closest(interactables)) dot.classList.add('hovered');
   });
-
   document.addEventListener('mouseout', (e) => {
-    if (e.target.closest(interactables)) {
-      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-      ring.style.width       = '36px';
-      ring.style.height      = '36px';
-      ring.style.borderColor = isDark ? 'rgba(167,139,250,0.7)' : 'rgba(99,102,241,0.8)';
-      dot.style.transform    = 'translate(-50%,-50%) scale(1)';
-    }
+    if (e.target.closest(interactables)) dot.classList.remove('hovered');
   });
 
-  document.addEventListener('mousedown', () => {
-    dot.style.transform  = 'translate(-50%,-50%) scale(0.6)';
-    ring.style.transform = 'translate(-50%,-50%) scale(0.85)';
-  });
-
-  document.addEventListener('mouseup', () => {
-    dot.style.transform  = 'translate(-50%,-50%) scale(1)';
-    ring.style.transform = 'translate(-50%,-50%) scale(1)';
-  });
+  // Click — shrink
+  document.addEventListener('mousedown', () => dot.classList.add('clicking'));
+  document.addEventListener('mouseup',   () => dot.classList.remove('clicking'));
 
   // Hide when leaving window
-  document.addEventListener('mouseleave', () => {
-    dot.style.opacity  = '0';
-    ring.style.opacity = '0';
-  });
-
-  document.addEventListener('mouseenter', () => {
-    dot.style.opacity  = '1';
-    ring.style.opacity = '1';
-  });
+  document.addEventListener('mouseleave', () => { dot.style.opacity = '0'; });
+  document.addEventListener('mouseenter', () => { dot.style.opacity = '1'; });
 }
 
 /* ── 3. NAVBAR SCROLL ─────────────────────────────────────── */
@@ -327,6 +281,20 @@ function initActiveNavLinks() {
 
   sections.forEach(section => observer.observe(section));
 }
+
+/* Smooth scroll without changing URL hash */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const href = this.getAttribute('href');
+    if (!href || href === '#') return;
+    const target = document.querySelector(href);
+    if (!target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Update URL without adding to history
+    history.replaceState(null, '', href);
+  });
+});
 
 /* ── 9. COUNTER ANIMATIONS ────────────────────────────────── */
 function initCounterAnimations() {
@@ -617,7 +585,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initRevealAnimations();
   initActiveNavLinks();
   initCounterAnimations();
-  initParticles();
   initContactForm();
   initBackToTop();
   initYearFooter();
