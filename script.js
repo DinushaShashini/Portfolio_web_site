@@ -1,13 +1,5 @@
-/* ================================================
-   PORTFOLIO SCRIPT
-   D W D Shashini Dharmadasa
-================================================ */
-
 'use strict';
 
-/* ------------------------------------------------
-   1. DOM READY HELPER
------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
   initHamburger();
@@ -20,165 +12,86 @@ document.addEventListener('DOMContentLoaded', () => {
   initYearFooter();
 });
 
-
-/* ------------------------------------------------
-   2. NAVBAR – sticky + blur on scroll
------------------------------------------------- */
+/* NAVBAR — add .scrolled class on scroll */
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   if (!navbar) return;
-
-  const onScroll = () => {
-    if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  };
-
+  const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 50);
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll(); // run once on load
+  onScroll();
 }
 
-
-/* ------------------------------------------------
-   3. HAMBURGER MENU
------------------------------------------------- */
+/* HAMBURGER */
 function initHamburger() {
   const hamburger = document.getElementById('hamburger');
   const navMenu   = document.getElementById('nav-menu');
-  const navLinks  = document.querySelectorAll('.nav-link');
   if (!hamburger || !navMenu) return;
 
-  const closeMenu = () => {
+  const close = () => {
     hamburger.classList.remove('open');
     navMenu.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
   };
 
   hamburger.addEventListener('click', () => {
-    const isOpen = hamburger.classList.toggle('open');
+    const open = hamburger.classList.toggle('open');
     navMenu.classList.toggle('open');
-    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute('aria-expanded', String(open));
   });
 
-  // Close on nav link click
-  navLinks.forEach(link => {
-    link.addEventListener('click', closeMenu);
-  });
-
-  // Close when clicking outside
+  navMenu.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', close));
   document.addEventListener('click', (e) => {
-    if (!navbar.contains(e.target) && navMenu.classList.contains('open')) {
-      closeMenu();
-    }
+    if (!e.target.closest('.navbar') && navMenu.classList.contains('open')) close();
   });
 }
 
-
-/* ------------------------------------------------
-   4. TYPEWRITER ANIMATION
------------------------------------------------- */
+/* TYPEWRITER */
 function initTypewriter() {
   const el = document.getElementById('typewriter');
   if (!el) return;
-
-  const texts = [
-    'Full Stack Developer',
-    'MERN Stack Developer',
-    'Android Developer',
-    'UI/UX Enthusiast',
-  ];
-
-  let textIndex   = 0;
-  let charIndex   = 0;
-  let isDeleting  = false;
-  let typingSpeed = 100;
+  const texts = ['Full Stack Developer', 'MERN Stack Developer', 'Android Developer', 'UI/UX Enthusiast'];
+  let ti = 0, ci = 0, deleting = false, speed = 110;
 
   const type = () => {
-    const currentText = texts[textIndex];
+    const cur = texts[ti];
+    el.textContent = deleting
+      ? cur.substring(0, --ci)
+      : cur.substring(0, ++ci);
 
-    if (isDeleting) {
-      el.textContent = currentText.substring(0, charIndex - 1);
-      charIndex--;
-      typingSpeed = 55;
-    } else {
-      el.textContent = currentText.substring(0, charIndex + 1);
-      charIndex++;
-      typingSpeed = 110;
-    }
+    if (!deleting && ci === cur.length)       { speed = 1800; deleting = true; }
+    else if (deleting && ci === 0)            { deleting = false; ti = (ti + 1) % texts.length; speed = 400; }
+    else                                      { speed = deleting ? 55 : 110; }
 
-    if (!isDeleting && charIndex === currentText.length) {
-      // Pause before deleting
-      typingSpeed = 1800;
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      textIndex  = (textIndex + 1) % texts.length;
-      typingSpeed = 400; // pause before typing next
-    }
-
-    setTimeout(type, typingSpeed);
+    setTimeout(type, speed);
   };
-
-  // Small initial delay before starting
   setTimeout(type, 600);
 }
 
-
-/* ------------------------------------------------
-   5. SCROLL-TRIGGERED FADE-IN ANIMATIONS
-   (Intersection Observer)
------------------------------------------------- */
+/* SCROLL FADE-IN */
 function initScrollAnimations() {
-  const fadeEls = document.querySelectorAll('.fade-in');
-  if (!fadeEls.length) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target); // animate once
-        }
-      });
-    },
-    {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px',
-    }
-  );
-
-  fadeEls.forEach(el => observer.observe(el));
+  const els = document.querySelectorAll('.fade-in');
+  if (!els.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(el => obs.observe(el));
 }
 
-
-/* ------------------------------------------------
-   6. ACTIVE NAV LINK ON SCROLL
------------------------------------------------- */
+/* ACTIVE NAV LINK */
 function initActiveNavLinks() {
-  const sections  = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('.nav-link');
-  if (!sections.length || !navLinks.length) return;
+  const sections = document.querySelectorAll('section[id]');
+  const links    = document.querySelectorAll('.nav-link');
+  if (!sections.length || !links.length) return;
 
-  const NAV_OFFSET = 90;
+  const NAV_H = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
 
   const setActive = () => {
     const scrollY = window.scrollY;
     let current = '';
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - NAV_OFFSET;
-      if (scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
+    sections.forEach(s => { if (scrollY >= s.offsetTop - NAV_H - 10) current = s.id; });
+    links.forEach(l => {
+      l.classList.remove('active');
+      if (l.getAttribute('href') === `#${current}`) l.classList.add('active');
     });
   };
 
@@ -186,220 +99,90 @@ function initActiveNavLinks() {
   setActive();
 }
 
-
-/* ------------------------------------------------
-   7. COUNTER ANIMATIONS (stats)
------------------------------------------------- */
+/* COUNTER ANIMATIONS */
 function initCounterAnimations() {
-  const statNumbers = document.querySelectorAll('.stat-number[data-target]');
-  if (!statNumbers.length) return;
-
-  const animateCounter = (el) => {
-    const target   = parseInt(el.getAttribute('data-target'), 10);
-    const duration = 1400;
-    const step     = target / (duration / 16); // ~60fps
-    let current    = 0;
-
-    const update = () => {
-      current += step;
-      if (current < target) {
-        el.textContent = Math.floor(current);
-        requestAnimationFrame(update);
-      } else {
-        el.textContent = target;
-      }
-    };
+  const nums = document.querySelectorAll('.stat-number[data-target]');
+  if (!nums.length) return;
+  const animate = el => {
+    const target = parseInt(el.getAttribute('data-target'), 10);
+    let cur = 0;
+    const step = target / (1400 / 16);
+    const update = () => { cur += step; if (cur < target) { el.textContent = Math.floor(cur); requestAnimationFrame(update); } else { el.textContent = target; } };
     requestAnimationFrame(update);
   };
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  statNumbers.forEach(el => observer.observe(el));
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  nums.forEach(el => obs.observe(el));
 }
 
-
-/* ------------------------------------------------
-   8. CONTACT FORM VALIDATION
------------------------------------------------- */
+/* CONTACT FORM */
 function initContactForm() {
-  const form       = document.getElementById('contact-form');
-  const submitBtn  = document.getElementById('submit-btn');
-  const successMsg = document.getElementById('form-success');
+  const form      = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const successEl = document.getElementById('form-success');
   if (!form) return;
 
-  const getField  = id => document.getElementById(id);
-  const getError  = id => document.getElementById(`${id}-error`);
-
-  const showError = (fieldId, message) => {
-    const field = getField(fieldId);
-    const error = getError(fieldId);
-    if (field)  field.classList.add('error');
-    if (error)  error.textContent = message;
-  };
-
-  const clearError = (fieldId) => {
-    const field = getField(fieldId);
-    const error = getError(fieldId);
-    if (field)  field.classList.remove('error');
-    if (error)  error.textContent = '';
-  };
-
-  const validateEmail = (email) => {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  };
+  const getField = id => document.getElementById(id);
+  const getError = id => document.getElementById(`${id}-error`);
+  const showErr  = (id, msg) => { getField(id)?.classList.add('error'); const e = getError(id); if (e) e.textContent = msg; };
+  const clearErr = id => { getField(id)?.classList.remove('error'); const e = getError(id); if (e) e.textContent = ''; };
+  const validEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 
   const validate = () => {
-    let valid = true;
-
-    const name    = getField('name')?.value.trim() || '';
-    const email   = getField('email')?.value.trim() || '';
+    let ok = true;
+    const name    = getField('name')?.value.trim()    || '';
+    const email   = getField('email')?.value.trim()   || '';
     const message = getField('message')?.value.trim() || '';
-
-    // Name
-    clearError('name');
-    if (!name) {
-      showError('name', 'Please enter your name.');
-      valid = false;
-    } else if (name.length < 2) {
-      showError('name', 'Name must be at least 2 characters.');
-      valid = false;
-    }
-
-    // Email
-    clearError('email');
-    if (!email) {
-      showError('email', 'Please enter your email address.');
-      valid = false;
-    } else if (!validateEmail(email)) {
-      showError('email', 'Please enter a valid email address.');
-      valid = false;
-    }
-
-    // Message
-    clearError('message');
-    if (!message) {
-      showError('message', 'Please enter your message.');
-      valid = false;
-    } else if (message.length < 10) {
-      showError('message', 'Message must be at least 10 characters.');
-      valid = false;
-    }
-
-    return valid;
+    clearErr('name');    if (!name    || name.length    < 2)  { showErr('name',    'Please enter your name (min 2 chars).');     ok = false; }
+    clearErr('email');   if (!email   || !validEmail(email))  { showErr('email',   'Please enter a valid email address.');        ok = false; }
+    clearErr('message'); if (!message || message.length < 10) { showErr('message', 'Please enter a message (min 10 chars).');     ok = false; }
+    return ok;
   };
 
-  // Real-time validation on blur
-  ['name', 'email', 'message'].forEach(id => {
-    const field = getField(id);
-    if (field) {
-      field.addEventListener('blur', () => validate());
-      field.addEventListener('input', () => {
-        clearError(id);
-      });
-    }
+  ['name','email','message'].forEach(id => {
+    getField(id)?.addEventListener('blur',  validate);
+    getField(id)?.addEventListener('input', () => clearErr(id));
   });
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', e => {
     e.preventDefault();
-
     if (!validate()) return;
-
-    // Disable button and show loading state
-    if (submitBtn) {
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i> Sending...';
-    }
-
-    // Simulate a send delay (replace this with real API call if needed)
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…'; }
     setTimeout(() => {
       form.reset();
-      ['name', 'email', 'message'].forEach(id => clearError(id));
-
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message';
-      }
-
-      if (successMsg) {
-        successMsg.style.display = 'flex';
-        setTimeout(() => {
-          successMsg.style.display = 'none';
-        }, 5000);
-      }
+      ['name','email','message'].forEach(clearErr);
+      if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message'; }
+      if (successEl) { successEl.style.display = 'flex'; setTimeout(() => successEl.style.display = 'none', 5000); }
     }, 1200);
   });
 }
 
-
-/* ------------------------------------------------
-   9. BACK TO TOP BUTTON
------------------------------------------------- */
+/* BACK TO TOP */
 function initBackToTop() {
   const btn = document.getElementById('back-to-top');
   if (!btn) return;
-
-  const toggle = () => {
-    if (window.scrollY > 400) {
-      btn.classList.add('visible');
-    } else {
-      btn.classList.remove('visible');
-    }
-  };
-
+  const toggle = () => btn.classList.toggle('visible', window.scrollY > 400);
   window.addEventListener('scroll', toggle, { passive: true });
   toggle();
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
+  btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
 
-
-/* ------------------------------------------------
-   10. FOOTER YEAR
------------------------------------------------- */
+/* FOOTER YEAR */
 function initYearFooter() {
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
+  const el = document.getElementById('year');
+  if (el) el.textContent = new Date().getFullYear();
 }
 
-
-/* ------------------------------------------------
-   11. SMOOTH SCROLL FOR ANCHOR LINKS
-   (Supplementary – CSS scroll-behavior covers most,
-    this handles edge cases & offset for fixed navbar)
------------------------------------------------- */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', (e) => {
-    const targetId = anchor.getAttribute('href');
-    if (!targetId || targetId === '#') return;
-
-    const target = document.querySelector(targetId);
+/* SMOOTH SCROLL with nav offset */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (!id || id === '#') return;
+    const target = document.querySelector(id);
     if (!target) return;
-
     e.preventDefault();
-    const navHeight = parseInt(
-      getComputedStyle(document.documentElement).getPropertyValue('--nav-height'),
-      10
-    ) || 70;
-
-    const offsetTop = target.getBoundingClientRect().top + window.scrollY - navHeight;
-
-    window.scrollTo({
-      top: offsetTop,
-      behavior: 'smooth',
-    });
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 64;
+    window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH, behavior: 'smooth' });
   });
 });
