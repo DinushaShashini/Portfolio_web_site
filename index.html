@@ -1,28 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dinusha S Dharmadasa | Full Stack Software Developer</title>
-  <meta name="description" content="Portfolio of Dinusha S Dharmadasa – Full Stack Software Developer specializing in MERN Stack, Java, and Android development." />
+  <title>Dinusha S. Dharmadasa | Full Stack Developer</title>
+  <meta name="description" content="Premium portfolio of Dinusha S. Dharmadasa – Full Stack Software Developer" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- LOADING SCREEN -->
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <div class="loader-logo">D</div>
+      <div class="loader-bar"><div class="loader-progress" id="loader-progress"></div></div>
+      <p class="loader-text">Loading Portfolio...</p>
+    </div>
+  </div>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
     <div class="nav-inner">
       <a href="#hero" class="nav-brand">
-        <span class="nav-brand-star">✦</span> Dinusha 
+        <span class="nav-brand-star">✦</span> Dinusha S
       </a>
-
-      <!-- Centered pill nav -->
-      <div class="nav-pill-wrap">
+      <div class="nav-pill-wrap" id="nav-pill-wrap">
         <ul class="nav-links" id="nav-menu">
           <li><a href="#hero"           class="nav-link active">Home</a></li>
           <li><a href="#about"          class="nav-link">About</a></li>
@@ -33,15 +44,15 @@
           <li><a href="#contact"        class="nav-link">Contact</a></li>
         </ul>
       </div>
-
       <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
         <a href="assessts/CV_Dinusha_S_Dharmadasa.pdf" class="nav-cv-btn" download>
           Download CV <i class="fas fa-download"></i>
         </a>
         <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
         </button>
       </div>
     </div>
@@ -49,43 +60,40 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <canvas id="particles"></canvas>
     <div class="hero-bg" style="background-image:url('assessts/hero-bg.png')">
       <div class="hero-overlay"></div>
     </div>
-
     <div class="hero-body">
-      <!-- left text -->
       <div class="hero-text">
-        <span class="hero-pill">
+        <span class="hero-pill reveal-up">
           <span class="hero-pill-dot"></span> IT Undergraduate
         </span>
-        <h1 class="hero-heading">
+        <h1 class="hero-heading reveal-up">
           Dinusha S.<br>
-          <span class="hero-heading-gold">Dharmadasa</span>
+          <span class="hero-heading-gradient">Dharmadasa</span>
         </h1>
-        <p class="hero-role">
+        <p class="hero-role reveal-up">
           <span id="typewriter"></span><span class="hero-cursor">|</span>
         </p>
-        <p class="hero-desc">
+        <p class="hero-desc reveal-up">
           I build scalable web &amp; mobile applications, crafting efficient,
           secure, and user-focused software solutions that solve real-world problems.
         </p>
-        <div class="hero-badges">
+        <div class="hero-badges reveal-up">
           <span class="hero-badge"><i class="fas fa-map-marker-alt"></i> Sri Lanka</span>
           <a href="tel:+94771171519" class="hero-badge"><i class="fas fa-phone"></i> +94 77 117 1519</a>
           <a href="mailto:dharmadasadinusha@gmail.com" class="hero-badge"><i class="fas fa-envelope"></i> dharmadasadinusha@gmail.com</a>
         </div>
-        <div class="hero-socials">
+        <div class="hero-socials reveal-up">
           <a href="https://www.linkedin.com/in/dwdsdharmadasa" target="_blank" rel="noopener" class="hero-social" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/DinushaShashini"          target="_blank" rel="noopener" class="hero-social" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="mailto:dharmadasadinusha@gmail.com"           class="hero-social" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="hero-social" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="mailto:dharmadasadinusha@gmail.com" class="hero-social" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
-
-    <!-- bottom-right profile photo -->
-    <div class="hero-avatar">
-      <img src="assessts/profile.png" alt="Dinusha S Dharmadasa" />
+    <div class="hero-avatar reveal-right">
+      <img src="assessts/profile.png" alt="Dinusha S. Dharmadasa" />
       <span class="hero-avatar-dot"></span>
     </div>
   </section>
@@ -93,19 +101,20 @@
   <!-- ABOUT -->
   <section class="section" id="about">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-up">
         <span class="section-tag">Get To Know Me</span>
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title gradient-text">About Me</h2>
         <div class="section-line"></div>
       </div>
       <div class="about-grid">
-        <div class="about-photo-col fade-in">
+        <div class="about-photo-col reveal-left">
           <div class="about-photo-wrapper">
-            <img src="assessts/profile.png" alt="Dinusha S Dharmadasa" class="about-photo" />
+            <img src="assessts/profile.png" alt="Dinusha S. Dharmadasa" class="about-photo" />
             <div class="about-photo-deco"></div>
+            <div class="about-photo-glow"></div>
           </div>
         </div>
-        <div class="about-content-col fade-in">
+        <div class="about-content-col reveal-right">
           <h3 class="about-subtitle">Full Stack Software Developer</h3>
           <p class="about-text">Results-driven Full Stack Software Developer with hands-on experience in MERN Stack (MongoDB, Express.js, React.js, Node.js), Java, and Android development using Kotlin and Android Studio. Skilled in designing and developing scalable web and mobile applications, building RESTful APIs, and delivering responsive UI/UX solutions.</p>
           <p class="about-text">Strong knowledge of database systems (MySQL, MongoDB), authentication mechanisms (Firebase Authentication, JWT), CRUD operations, and real-time data synchronization. Experienced in API integration, Git/GitHub version control, Agile development methodologies, and software development lifecycle practices.</p>
@@ -116,10 +125,10 @@
             <div class="about-detail-item"><i class="fas fa-map-marker-alt"></i><span>Sri Lanka</span></div>
           </div>
           <div class="about-stats">
-            <div class="stat-card"><span class="stat-number" data-target="4">0</span><span class="stat-label">Projects</span></div>
-            <div class="stat-card"><span class="stat-number" data-target="4">0</span><span class="stat-suffix">+</span><span class="stat-label">Tech Stacks</span></div>
-            <div class="stat-card"><span class="stat-number" data-target="1">0</span><span class="stat-label">Certification</span></div>
-            <div class="stat-card"><span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span><span class="stat-label">Passion</span></div>
+            <div class="stat-card glass-card"><span class="stat-number" data-target="4">0</span><span class="stat-label">Projects</span></div>
+            <div class="stat-card glass-card"><span class="stat-number" data-target="4">0</span><span class="stat-suffix">+</span><span class="stat-label">Tech Stacks</span></div>
+            <div class="stat-card glass-card"><span class="stat-number" data-target="1">0</span><span class="stat-label">Certification</span></div>
+            <div class="stat-card glass-card"><span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span><span class="stat-label">Passion</span></div>
           </div>
         </div>
       </div>
@@ -127,16 +136,17 @@
   </section>
 
   <!-- SKILLS -->
-  <section class="section section-dark" id="skills">
+  <section class="section section-alt" id="skills">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-up">
         <span class="section-tag">What I Know</span>
-        <h2 class="section-title">Technical Skills</h2>
+        <h2 class="section-title gradient-text">Technical Skills</h2>
         <div class="section-line"></div>
       </div>
       <div class="skills-grid">
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-code"></i> Programming Languages</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-code"></i></div>
+          <h3 class="skill-cat-title">Programming Languages</h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="devicon-java-plain colored"></i> Java</span>
             <span class="skill-tag"><i class="devicon-javascript-plain colored"></i> JavaScript</span>
@@ -144,8 +154,9 @@
             <span class="skill-tag"><i class="devicon-python-plain colored"></i> Python</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-palette"></i> Frontend Development</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-palette"></i></div>
+          <h3 class="skill-cat-title">Frontend Development</h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="devicon-react-original colored"></i> React.js</span>
             <span class="skill-tag"><i class="devicon-html5-plain colored"></i> HTML5</span>
@@ -154,8 +165,9 @@
             <span class="skill-tag"><i class="devicon-bootstrap-plain colored"></i> Bootstrap</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-server"></i> Backend Development</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-server"></i></div>
+          <h3 class="skill-cat-title">Backend Development</h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="devicon-nodejs-plain colored"></i> Node.js</span>
             <span class="skill-tag"><i class="devicon-express-original"></i> Express.js</span>
@@ -163,8 +175,9 @@
             <span class="skill-tag">🔗 RESTful APIs</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-mobile-alt"></i> Mobile Development</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-mobile-alt"></i></div>
+          <h3 class="skill-cat-title">Mobile Development</h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="devicon-android-plain colored"></i> Android Studio</span>
             <span class="skill-tag"><i class="devicon-kotlin-plain colored"></i> Kotlin</span>
@@ -172,32 +185,36 @@
             <span class="skill-tag">🔥 Firebase Integration</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-database"></i> Databases</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-database"></i></div>
+          <h3 class="skill-cat-title">Databases</h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="devicon-mysql-plain colored"></i> MySQL</span>
             <span class="skill-tag"><i class="devicon-mongodb-plain colored"></i> MongoDB</span>
             <span class="skill-tag">🔥 Firebase Realtime DB</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-shield-alt"></i> Auth &amp; Security</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3 class="skill-cat-title">Auth &amp; Security</h3>
           <div class="skill-tags">
             <span class="skill-tag">🔥 Firebase Auth</span>
             <span class="skill-tag">🔐 JWT Auth</span>
             <span class="skill-tag">🛡️ RBAC</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-plug"></i> API &amp; Integration</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-plug"></i></div>
+          <h3 class="skill-cat-title">API &amp; Integration</h3>
           <div class="skill-tags">
             <span class="skill-tag">🔗 REST API Dev</span>
             <span class="skill-tag">🔌 API Integration</span>
             <span class="skill-tag">📬 Postman</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-tools"></i> Tools &amp; Platforms</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-tools"></i></div>
+          <h3 class="skill-cat-title">Tools &amp; Platforms</h3>
           <div class="skill-tags">
             <span class="skill-tag"><i class="devicon-git-plain colored"></i> Git</span>
             <span class="skill-tag"><i class="devicon-github-original"></i> GitHub</span>
@@ -206,8 +223,9 @@
             <span class="skill-tag">🌘 Eclipse</span>
           </div>
         </div>
-        <div class="skill-category fade-in">
-          <h3 class="skill-cat-title"><i class="fas fa-user-tie"></i> Professional Skills</h3>
+        <div class="skill-category glass-card reveal-up">
+          <div class="skill-cat-icon"><i class="fas fa-user-tie"></i></div>
+          <h3 class="skill-cat-title">Professional Skills</h3>
           <div class="skill-tags">
             <span class="skill-tag">🧩 Problem Solving</span>
             <span class="skill-tag">🤝 Team Collaboration</span>
@@ -223,15 +241,14 @@
   <!-- PROJECTS -->
   <section class="section" id="projects">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-up">
         <span class="section-tag">What I've Built</span>
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title gradient-text">Projects</h2>
         <div class="section-line"></div>
       </div>
       <div class="projects-grid">
-
-        <article class="project-card fade-in">
-          <div class="project-card-header">
+        <article class="project-card glass-card reveal-up">
+          <div class="project-card-top">
             <div class="project-icon"><i class="fas fa-bus"></i></div>
             <div class="project-badges">
               <span class="badge badge-group">Group Project</span>
@@ -255,12 +272,12 @@
             <span class="tech-tag">React.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">Firebase</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn-ghost"><i class="fab fa-github"></i> View Code</a>
           </div>
         </article>
 
-        <article class="project-card fade-in">
-          <div class="project-card-header">
+        <article class="project-card glass-card reveal-up">
+          <div class="project-card-top">
             <div class="project-icon"><i class="fas fa-university"></i></div>
             <div class="project-badges"><span class="badge badge-group">Group Project</span></div>
           </div>
@@ -281,12 +298,12 @@
             <span class="tech-tag">MongoDB</span><span class="tech-tag">REST APIs</span><span class="tech-tag">JWT</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn-ghost"><i class="fab fa-github"></i> View Code</a>
           </div>
         </article>
 
-        <article class="project-card fade-in">
-          <div class="project-card-header">
+        <article class="project-card glass-card reveal-up">
+          <div class="project-card-top">
             <div class="project-icon"><i class="fas fa-building"></i></div>
             <div class="project-badges"><span class="badge badge-group">Group Project</span></div>
           </div>
@@ -307,12 +324,12 @@
             <span class="tech-tag">React.js</span><span class="tech-tag">Node.js</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn-ghost"><i class="fab fa-github"></i> View Code</a>
           </div>
         </article>
 
-        <article class="project-card fade-in">
-          <div class="project-card-header">
+        <article class="project-card glass-card reveal-up">
+          <div class="project-card-top">
             <div class="project-icon"><i class="fas fa-heartbeat"></i></div>
             <div class="project-badges"><span class="badge badge-individual">Individual Project</span></div>
           </div>
@@ -333,27 +350,26 @@
             <span class="tech-tag">Firebase</span><span class="tech-tag">XML UI</span>
           </div>
           <div class="project-links">
-            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn btn-sm btn-outline"><i class="fab fa-github"></i> GitHub</a>
+            <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="btn-ghost"><i class="fab fa-github"></i> View Code</a>
           </div>
         </article>
-
       </div>
     </div>
   </section>
 
   <!-- EDUCATION -->
-  <section class="section section-dark" id="education">
+  <section class="section section-alt" id="education">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-up">
         <span class="section-tag">My Academic Journey</span>
-        <h2 class="section-title">Education &amp; Courses</h2>
+        <h2 class="section-title gradient-text">Education &amp; Courses</h2>
         <div class="section-line"></div>
       </div>
-      <h3 class="sub-section-title fade-in"><i class="fas fa-graduation-cap"></i> Academic Education</h3>
+      <h3 class="sub-section-title reveal-up"><i class="fas fa-graduation-cap"></i> Academic Education</h3>
       <div class="timeline">
-        <div class="timeline-item fade-in">
+        <div class="timeline-item reveal-left">
           <div class="timeline-dot"></div>
-          <div class="timeline-content">
+          <div class="timeline-content glass-card">
             <div class="timeline-date"><i class="fas fa-calendar-alt"></i> Oct 2023 – Present</div>
             <h4 class="timeline-title">BSc (Hons) in Information Technology</h4>
             <p class="timeline-subtitle">Specializing in Information Technology</p>
@@ -366,12 +382,12 @@
           </div>
         </div>
       </div>
-      <h3 class="sub-section-title fade-in"><i class="fas fa-book-open"></i> Relevant Courses</h3>
+      <h3 class="sub-section-title reveal-up"><i class="fas fa-book-open"></i> Relevant Courses</h3>
       <div class="courses-grid">
-        <div class="course-card fade-in"><div class="course-icon"><i class="fas fa-cubes"></i></div><h4 class="course-title">Object Oriented Programming</h4></div>
-        <div class="course-card fade-in"><div class="course-icon"><i class="fas fa-sitemap"></i></div><h4 class="course-title">Data Structures &amp; Algorithms</h4></div>
-        <div class="course-card fade-in"><div class="course-icon"><i class="fas fa-mobile-alt"></i></div><h4 class="course-title">Mobile Application Development</h4></div>
-        <div class="course-card fade-in"><div class="course-icon"><i class="fas fa-database"></i></div><h4 class="course-title">Database Management Systems</h4></div>
+        <div class="course-card glass-card reveal-up"><div class="course-icon"><i class="fas fa-cubes"></i></div><h4 class="course-title">Object Oriented Programming</h4></div>
+        <div class="course-card glass-card reveal-up"><div class="course-icon"><i class="fas fa-sitemap"></i></div><h4 class="course-title">Data Structures &amp; Algorithms</h4></div>
+        <div class="course-card glass-card reveal-up"><div class="course-icon"><i class="fas fa-mobile-alt"></i></div><h4 class="course-title">Mobile Application Development</h4></div>
+        <div class="course-card glass-card reveal-up"><div class="course-icon"><i class="fas fa-database"></i></div><h4 class="course-title">Database Management Systems</h4></div>
       </div>
     </div>
   </section>
@@ -379,13 +395,13 @@
   <!-- CERTIFICATIONS -->
   <section class="section" id="certifications">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-up">
         <span class="section-tag">Achievements</span>
-        <h2 class="section-title">Certifications</h2>
+        <h2 class="section-title gradient-text">Certifications</h2>
         <div class="section-line"></div>
       </div>
       <div class="cert-grid">
-        <div class="cert-card fade-in">
+        <div class="cert-card glass-card reveal-up">
           <div class="cert-icon"><i class="devicon-python-plain colored"></i></div>
           <div class="cert-content">
             <h3 class="cert-title">Python For Beginner</h3>
@@ -394,8 +410,8 @@
           </div>
         </div>
       </div>
-      <h3 class="sub-section-title fade-in"><i class="fas fa-heart"></i> Interests</h3>
-      <div class="interests-tags fade-in">
+      <h3 class="sub-section-title reveal-up"><i class="fas fa-heart"></i> Interests</h3>
+      <div class="interests-tags reveal-up">
         <span class="interest-tag">⚡ Full-Stack Development</span>
         <span class="interest-tag">📱 Mobile App Development</span>
         <span class="interest-tag">🎨 UI/UX Design</span>
@@ -406,15 +422,15 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="section section-dark" id="contact">
+  <section class="section section-alt" id="contact">
     <div class="container">
-      <div class="section-header fade-in">
+      <div class="section-header reveal-up">
         <span class="section-tag">Get In Touch</span>
-        <h2 class="section-title">Contact Me</h2>
+        <h2 class="section-title gradient-text">Contact Me</h2>
         <div class="section-line"></div>
       </div>
       <div class="contact-grid">
-        <div class="contact-info fade-in">
+        <div class="contact-info reveal-left">
           <h3 class="contact-info-title">Let's work together!</h3>
           <p class="contact-info-text">I'm currently looking for new opportunities. Whether you have a project, a question, or just want to say hello — my inbox is always open.</p>
           <div class="contact-details">
@@ -432,7 +448,7 @@
             </a>
           </div>
         </div>
-        <div class="contact-form-wrapper fade-in">
+        <div class="contact-form-wrapper glass-card reveal-right">
           <form class="contact-form" id="contact-form" novalidate>
             <div class="form-group">
               <label for="name" class="form-label">Your Name *</label>
@@ -441,7 +457,7 @@
             </div>
             <div class="form-group">
               <label for="email" class="form-label">Your Email *</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="john@example.com" required />
+              <input type="email" id="email" name="email" class="form-input" placeholder="john@gmail.com" required />
               <span class="form-error" id="email-error"></span>
             </div>
             <div class="form-group">
@@ -449,7 +465,7 @@
               <textarea id="message" name="message" class="form-textarea" rows="5" placeholder="Hi Dinusha, I'd love to connect..." required></textarea>
               <span class="form-error" id="message-error"></span>
             </div>
-            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+            <button type="submit" class="btn-primary-full" id="submit-btn">
               <i class="fas fa-paper-plane"></i> Send Message
             </button>
             <div class="form-success" id="form-success" style="display:none;">
@@ -465,18 +481,18 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
+        <div class="footer-brand">✦ Dinusha S. Dharmadasa</div>
         <p class="footer-tagline">Full Stack Software Developer</p>
         <div class="footer-socials">
-          <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/dwdsdharmadasa" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="mailto:dharmadasadinusha@gmail.com" class="social-icon" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://github.com/DinushaShashini" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/dwdsdharmadasa" target="_blank" rel="noopener" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:dharmadasadinusha@gmail.com" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
-        <p class="footer-copy">&copy; <span id="year"></span> Dinusha S Dharmadasa. All rights reserved.</p>
+        <p class="footer-copy">&copy; <span id="year"></span> Dinusha S. Dharmadasa. Crafted with ❤️</p>
       </div>
     </div>
   </footer>
 
-  <!-- Back to Top -->
   <button class="back-to-top" id="back-to-top" aria-label="Back to top">
     <i class="fas fa-arrow-up"></i>
   </button>
