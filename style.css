@@ -21,7 +21,7 @@
   --r-lg:      20px;
   --r-full:    9999px;
   --t:         all 0.3s ease;
-  --nav-h:     64px;
+  --nav-h:     68px;
 }
 
 /* ================================================
@@ -118,13 +118,14 @@ button { cursor: pointer; font-family: var(--font-b); border: none; background: 
 /* Brand */
 .nav-brand {
   font-family: var(--font-h);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   color: var(--gold);
   display: flex;
   align-items: center;
   gap: 5px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 .nav-brand-star { color: var(--gold); font-size: 0.8rem; }
 
@@ -139,13 +140,14 @@ button { cursor: pointer; font-family: var(--font-b); border: none; background: 
 
 .nav-link {
   font-family: var(--font-h);
-  font-size: 0.84rem;
+  font-size: 0.80rem;
   font-weight: 500;
   color: var(--text2);
-  padding: 6px 14px;
+  padding: 6px 11px;
   border-radius: var(--r-full);
   transition: var(--t);
   position: relative;
+  white-space: nowrap;
 }
 .nav-link:hover { color: #fff; }
 .nav-link.active {
@@ -163,18 +165,18 @@ button { cursor: pointer; font-family: var(--font-b); border: none; background: 
 }
 
 /* Right side */
-.nav-actions { display: flex; align-items: center; gap: 10px; }
+.nav-actions { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
 .nav-cv-btn {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 8px 20px;
+  padding: 7px 16px;
   background: rgba(255,255,255,0.07);
   border: 1.5px solid rgba(255,255,255,0.18);
   border-radius: var(--r-full);
   font-family: var(--font-h);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 600;
   color: #fff;
   white-space: nowrap;
