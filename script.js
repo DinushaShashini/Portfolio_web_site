@@ -25,23 +25,24 @@ function initNavbar() {
 function initHamburger() {
   const hamburger = document.getElementById('hamburger');
   const navMenu   = document.getElementById('nav-menu');
+  const pillWrap  = navMenu ? navMenu.closest('.nav-pill-wrap') : null;
   if (!hamburger || !navMenu) return;
 
   const close = () => {
     hamburger.classList.remove('open');
-    navMenu.classList.remove('open');
+    if (pillWrap) pillWrap.classList.remove('open');
     hamburger.setAttribute('aria-expanded', 'false');
   };
 
   hamburger.addEventListener('click', () => {
     const open = hamburger.classList.toggle('open');
-    navMenu.classList.toggle('open');
+    if (pillWrap) pillWrap.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', String(open));
   });
 
   navMenu.querySelectorAll('.nav-link').forEach(l => l.addEventListener('click', close));
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.navbar') && navMenu.classList.contains('open')) close();
+    if (!e.target.closest('.navbar') && pillWrap && pillWrap.classList.contains('open')) close();
   });
 }
 
