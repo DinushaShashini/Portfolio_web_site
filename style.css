@@ -157,32 +157,44 @@ body {
   position: fixed;
   top: 0; left: 0;
   width: 8px; height: 8px;
-  background: var(--accent);
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
   transform: translate(-50%, -50%);
-  transition: transform 0.05s ease, opacity 0.3s ease;
-  box-shadow: 0 0 8px var(--accent);
+  transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease, opacity 0.3s ease;
 }
 
 .cursor-ring {
   position: fixed;
   top: 0; left: 0;
   width: 36px; height: 36px;
-  border: 2px solid rgba(167, 139, 250, 0.6);
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+  transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.3s ease;
 }
 
-body:has(a:hover) .cursor-ring,
-body:has(button:hover) .cursor-ring {
-  width: 52px;
-  height: 52px;
-  border-color: var(--accent);
+/* Dark mode cursor — glowing purple */
+[data-theme="dark"] .cursor-dot {
+  background: #a78bfa;
+  box-shadow: 0 0 10px #a78bfa, 0 0 20px rgba(167,139,250,0.5);
+}
+
+[data-theme="dark"] .cursor-ring {
+  border: 2px solid rgba(167, 139, 250, 0.7);
+  background: transparent;
+}
+
+/* Light mode cursor — solid dark navy with cyan ring */
+[data-theme="light"] .cursor-dot {
+  background: #1e1b4b;
+  box-shadow: 0 0 6px rgba(30,27,75,0.4);
+}
+
+[data-theme="light"] .cursor-ring {
+  border: 2px solid rgba(99, 102, 241, 0.8);
+  background: transparent;
 }
 
 /* ── 6. NAVBAR ───────────────────────────────────────────── */
@@ -391,14 +403,16 @@ body:has(button:hover) .cursor-ring {
     rgba(8, 8, 16, 0.20) 70%,
     rgba(8, 8, 16, 0.05) 100%
   );
+  transition: background 0.4s ease;
 }
 
 [data-theme="light"] .hero-overlay {
   background: linear-gradient(
     105deg,
-    rgba(248, 250, 255, 0.97) 0%,
-    rgba(248, 250, 255, 0.88) 45%,
-    rgba(238, 242, 255, 0.60) 100%
+    rgba(248, 250, 255, 0.82) 0%,
+    rgba(238, 242, 255, 0.55) 40%,
+    rgba(238, 242, 255, 0.15) 70%,
+    rgba(238, 242, 255, 0.02) 100%
   );
 }
 

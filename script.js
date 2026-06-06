@@ -79,18 +79,20 @@ function initCursor() {
   const interactables = 'a, button, input, textarea, [role="button"]';
   document.addEventListener('mouseover', (e) => {
     if (e.target.closest(interactables)) {
+      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
       ring.style.width       = '52px';
       ring.style.height      = '52px';
-      ring.style.borderColor = 'rgba(167,139,250,0.9)';
+      ring.style.borderColor = isDark ? 'rgba(167,139,250,1)' : 'rgba(99,102,241,1)';
       dot.style.transform    = 'translate(-50%,-50%) scale(1.8)';
     }
   });
 
   document.addEventListener('mouseout', (e) => {
     if (e.target.closest(interactables)) {
+      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
       ring.style.width       = '36px';
       ring.style.height      = '36px';
-      ring.style.borderColor = 'rgba(167,139,250,0.6)';
+      ring.style.borderColor = isDark ? 'rgba(167,139,250,0.7)' : 'rgba(99,102,241,0.8)';
       dot.style.transform    = 'translate(-50%,-50%) scale(1)';
     }
   });
