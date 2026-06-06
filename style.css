@@ -1674,11 +1674,11 @@ body:has(button:hover) .cursor-ring {
   }
 
   .hero-avatar {
-    position: relative;
-    right: auto;
-    bottom: auto;
-    width: 280px;
-    margin-top: 24px;
+    position: absolute;
+    bottom: 24px;
+    right: 20px;
+    width: 90px;
+    height: 90px;
   }
 
   .about-grid {
