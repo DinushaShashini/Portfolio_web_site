@@ -1521,6 +1521,112 @@ body {
   animation: fadeInUp 0.4s ease;
 }
 
+.form-contact-box {
+  margin-top: 16px;
+  padding: 18px;
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.28);
+  border-radius: var(--radius-sm);
+  animation: fadeInUp 0.4s ease;
+}
+
+.form-contact-box-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #4ade80;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.form-contact-box-header i {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.form-contact-box-header p {
+  margin: 0;
+}
+
+.form-contact-box-header.is-error {
+  color: #fbbf24;
+}
+
+.form-contact-box-header.is-error i {
+  color: #fbbf24;
+}
+
+.form-submission-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  padding: 14px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(167, 139, 250, 0.15);
+  border-radius: var(--radius-sm);
+}
+
+.submission-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.submission-label {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.submission-value {
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.form-contact-fallback-label {
+  margin: 14px 0 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.form-contact-box-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.form-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(167, 139, 250, 0.08);
+  border: 1px solid rgba(167, 139, 250, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+
+.form-contact-link i {
+  width: 18px;
+  text-align: center;
+  color: var(--accent);
+}
+
+.form-contact-link:hover {
+  background: rgba(167, 139, 250, 0.15);
+  border-color: rgba(167, 139, 250, 0.4);
+  transform: translateX(4px);
+}
+
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(8px); }
   to   { opacity: 1; transform: translateY(0); }

@@ -474,10 +474,18 @@ function initParticles() {
 }
 
 /* ── 11. CONTACT FORM ─────────────────────────────────────── */
+const FORM_SUBMIT_URL = 'https://formsubmit.co/ajax/bf3d7d08fe22c7c76b451b24d270d373';
+
 function initContactForm() {
-  const form       = document.getElementById('contact-form');
-  const submitBtn  = document.getElementById('submit-btn');
-  const successMsg = document.getElementById('form-success');
+  const form              = document.getElementById('contact-form');
+  const submitBtn         = document.getElementById('submit-btn');
+  const contactBox        = document.getElementById('form-contact-box');
+  const statusText        = document.getElementById('form-contact-status-text');
+  const statusHeader      = document.getElementById('form-contact-status');
+  const summaryName       = document.getElementById('summary-name');
+  const summaryEmail      = document.getElementById('summary-email');
+  const summarySubject    = document.getElementById('summary-subject');
+  const summaryMessage    = document.getElementById('summary-message');
   if (!form) return;
 
   function showError(id, msg) {
@@ -486,7 +494,7 @@ function initContactForm() {
   }
 
   function clearErrors() {
-    ['name-error', 'email-error', 'message-error'].forEach(id => showError(id, ''));
+    ['name-error', 'email-error', 'subject-error', 'message-error'].forEach(id => showError(id, ''));
   }
 
   function validateEmail(email) {
@@ -499,6 +507,7 @@ function initContactForm() {
 
     const name    = form.name.value.trim();
     const email   = form.email.value.trim();
+    const subject = form.subject.value.trim();
     const message = form.message.value.trim();
 
     if (!name) {
@@ -514,6 +523,11 @@ function initContactForm() {
       valid = false;
     }
 
+    if (!subject) {
+      showError('subject-error', 'Please enter a subject.');
+      valid = false;
+    }
+
     if (!message) {
       showError('message-error', 'Please enter your message.');
       valid = false;
@@ -525,35 +539,83 @@ function initContactForm() {
     return valid;
   }
 
-  form.addEventListener('submit', (e) => {
+  function showResultBox({ name, email, subject, message, success }) {
+    if (!contactBox) return;
+
+    if (summaryName) summaryName.textContent = name;
+    if (summaryEmail) summaryEmail.textContent = email;
+    if (summarySubject) summarySubject.textContent = subject;
+    if (summaryMessage) summaryMessage.textContent = message;
+
+    if (statusText) {
+      statusText.textContent = success
+        ? 'Your message has been sent! I will get back to you soon.'
+        : 'Message could not be sent. Please try again later.';
+    }
+
+    if (statusHeader) {
+      statusHeader.classList.toggle('is-error', !success);
+    }
+
+    contactBox.style.display = 'block';
+    contactBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    // Simulate send
-    submitBtn.disabled     = true;
-    submitBtn.innerHTML    = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    const name    = form.name.value.trim();
+    const email   = form.email.value.trim();
+    const subject = form.subject.value.trim();
+    const message = form.message.value.trim();
 
-    setTimeout(() => {
-      submitBtn.disabled  = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    submitBtn.disabled  = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    if (contactBox) contactBox.style.display = 'none';
+
+    try {
+      const response = await fetch(FORM_SUBMIT_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          subject,
+          message,
+          _subject: subject,
+          _replyto: email,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok || data.success === false) {
+        throw new Error(data.message || 'Form submission failed.');
+      }
+
       form.reset();
       clearErrors();
-
-      if (successMsg) {
-        successMsg.style.display = 'flex';
-        setTimeout(() => {
-          successMsg.style.display = 'none';
-        }, 5000);
-      }
-    }, 1600);
+      showResultBox({ name, email, subject, message, success: true });
+    } catch (error) {
+      showResultBox({ name, email, subject, message, success: false });
+    } finally {
+      submitBtn.disabled  = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    }
   });
 
   // Live validation feedback
   form.name.addEventListener('input',    () => showError('name-error', ''));
   form.email.addEventListener('input',   () => showError('email-error', ''));
+  form.subject.addEventListener('input', () => showError('subject-error', ''));
   form.message.addEventListener('input', () => showError('message-error', ''));
 }
-
 /* ── 12. BACK TO TOP ──────────────────────────────────────── */
 function initBackToTop() {
   const btn = document.getElementById('back-to-top');
