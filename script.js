@@ -482,10 +482,6 @@ function initContactForm() {
   const contactBox        = document.getElementById('form-contact-box');
   const statusText        = document.getElementById('form-contact-status-text');
   const statusHeader      = document.getElementById('form-contact-status');
-  const summaryName       = document.getElementById('summary-name');
-  const summaryEmail      = document.getElementById('summary-email');
-  const summarySubject    = document.getElementById('summary-subject');
-  const summaryMessage    = document.getElementById('summary-message');
   if (!form) return;
 
   function showError(id, msg) {
@@ -505,10 +501,10 @@ function initContactForm() {
     clearErrors();
     let valid = true;
 
-    const name    = form.name.value.trim();
-    const email   = form.email.value.trim();
-    const subject = form.subject.value.trim();
-    const message = form.message.value.trim();
+    const name    = form.elements.name.value.trim();
+    const email   = form.elements.email.value.trim();
+    const subject = form.elements.subject.value.trim();
+    const message = form.elements.message.value.trim();
 
     if (!name) {
       showError('name-error', 'Please enter your name.');
@@ -539,18 +535,13 @@ function initContactForm() {
     return valid;
   }
 
-  function showResultBox({ name, email, subject, message, success }) {
+  function showResultBox({ success, errorMessage }) {
     if (!contactBox) return;
-
-    if (summaryName) summaryName.textContent = name;
-    if (summaryEmail) summaryEmail.textContent = email;
-    if (summarySubject) summarySubject.textContent = subject;
-    if (summaryMessage) summaryMessage.textContent = message;
 
     if (statusText) {
       statusText.textContent = success
         ? 'Your message has been sent! I will get back to you soon.'
-        : 'Message could not be sent. Please try again later.';
+        : (errorMessage || 'Message could not be sent. Please try again later.');
     }
 
     if (statusHeader) {
@@ -565,45 +556,45 @@ function initContactForm() {
     e.preventDefault();
     if (!validate()) return;
 
-    const name    = form.name.value.trim();
-    const email   = form.email.value.trim();
-    const subject = form.subject.value.trim();
-    const message = form.message.value.trim();
+    const name    = form.elements.name.value.trim();
+    const email   = form.elements.email.value.trim();
+    const subject = form.elements.subject.value.trim();
+    const message = form.elements.message.value.trim();
 
     submitBtn.disabled  = true;
     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
     if (contactBox) contactBox.style.display = 'none';
 
     try {
+      const payload = new URLSearchParams({
+        name,
+        email,
+        Subject: subject,
+        message,
+        _subject: subject,
+        _replyto: email,
+        _template: 'table',
+        _captcha: 'false'
+      });
+
       const response = await fetch(FORM_SUBMIT_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          subject,
-          message,
-          _subject: subject,
-          _replyto: email,
-          _template: 'table',
-          _captcha: 'false'
-        })
+        headers: { 'Accept': 'application/json' },
+        body: payload
       });
 
       const data = await response.json().catch(() => ({}));
+      const isSuccess = data.success === true || data.success === 'true';
 
-      if (!response.ok || data.success === false) {
+      if (!response.ok || !isSuccess) {
         throw new Error(data.message || 'Form submission failed.');
       }
 
       form.reset();
       clearErrors();
-      showResultBox({ name, email, subject, message, success: true });
+      showResultBox({ success: true });
     } catch (error) {
-      showResultBox({ name, email, subject, message, success: false });
+      showResultBox({ success: false, errorMessage: error.message });
     } finally {
       submitBtn.disabled  = false;
       submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
@@ -611,10 +602,10 @@ function initContactForm() {
   });
 
   // Live validation feedback
-  form.name.addEventListener('input',    () => showError('name-error', ''));
-  form.email.addEventListener('input',   () => showError('email-error', ''));
-  form.subject.addEventListener('input', () => showError('subject-error', ''));
-  form.message.addEventListener('input', () => showError('message-error', ''));
+  form.elements.name.addEventListener('input',    () => showError('name-error', ''));
+  form.elements.email.addEventListener('input',   () => showError('email-error', ''));
+  form.elements.subject.addEventListener('input', () => showError('subject-error', ''));
+  form.elements.message.addEventListener('input', () => showError('message-error', ''));
 }
 /* ── 12. BACK TO TOP ──────────────────────────────────────── */
 function initBackToTop() {
